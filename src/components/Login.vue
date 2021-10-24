@@ -6,7 +6,13 @@
         <img src="../assets/logo.png" alt="" />
       </div>
       <!-- 登录表单区域 -->
-      <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
+      <el-form
+        ref="loginFormRef"
+        :model="loginForm"
+        :rules="loginFormRules"
+        label-width="0px"
+        class="login_form"
+      >
         <!-- 用户名 -->
         <el-form-item prop="username">
           <el-input
@@ -43,49 +49,60 @@ export default {
         password: "123456",
       },
       // 这是表单验证规则
-      loginFormRules:{
-        username:[
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+      loginFormRules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          {
+            min: 2,
+            max: 10,
+            message: "长度在 2 到 10 个字符",
+            trigger: "blur",
+          },
         ],
-        password:[
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
-        ]
-      }
-    };
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" },
+          {
+            min: 6,
+            max: 15,
+            message: "长度在 6 到 15 个字符",
+            trigger: "blur",
+          },
+        ],
+      },
+    }
   },
-  methods:{
-    resetLoginForm(){
+  methods: {
+    resetLoginForm() {
       // console.log(this)
       this.$refs.loginFormRef.resetFields()
     },
-    login(){
-      this.$refs.loginFormRef.validate(async valid=>{
-        if (!valid) return;
-        const {data:res} = await this.$http.post('login',this.loginForm)
-        if(res.meta.status !== 200) return this.$message({
-          message:'登录失败！',
-          type: 'error'
-        });
-        this.$message.success('登录成功！');
+    login() {
+      this.$refs.loginFormRef.validate(async (valid) => {
+        if (!valid) return
+        const { data: res } = await this.$http.post("login", this.loginForm)
+        if (res.meta.status !== 200)
+          return this.$message({
+            message: "登录失败！",
+            type: "error",
+          })
+        this.$message.success("登录成功！")
         // 1.将登录成功之后的token，保存到客户端的sessionStorage中
         //   1.1项目中出了登录之外的其他API接口，必须在登录之后才能访问
         //   1.2 token只应在当前网站打开期间生效，所以将token保存在 sessionStorage 中
         // console.log(res)
-        window.sessionStorage.setItem('token',res.data.token)
+        window.sessionStorage.setItem("token", res.data.token)
         // 2．通过编程武导航跳转到后台主页，路由地址是 /home
-        this.$router.push('/home');
-
+        this.$router.push("/home")
       })
-    }
-  }
-};
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>
 .login_container {
   height: 100%;
+  background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
   .login_box {
     width: 450px;
     height: 300px;
@@ -103,7 +120,7 @@ export default {
     height: 100px;
     border: 1px solid #eee;
     border-radius: 50%;
-    padding: 10px;
+    padding: 7px;
     box-shadow: 0 0 10px #ddd;
     position: absolute;
     left: 50%;
@@ -127,6 +144,29 @@ export default {
   .btns {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+@media screen and (min-width: 414px) and (max-width: 450px) {
+  .login_box {
+    width: 400px !important;
+    height: 296px !important;
+  }
+  .avatar_box {
+    width: 80px !important;
+    height: 80px !important;
+    padding: 6px !important;
+  }
+}
+@media screen and (max-width: 414px) {
+  .login_box {
+    width: 300px !important;
+    height: 250px !important;
+  }
+  .avatar_box {
+    width: 60px !important;
+    height: 60px !important;
+    padding: 5px !important;
   }
 }
 </style>

@@ -52,7 +52,7 @@ export default {
   methods:{
     async getRolesList(){
       const {data:res} = await this.$http.get('roles')
-      console.log(res)
+      // console.log(res)
       if(res.meta.status !==200){
         return this.$message.error('获取角色列表失败！')
       }
