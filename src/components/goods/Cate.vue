@@ -40,7 +40,7 @@
 export default {
   data(){
     return{
-      querInfo:{
+      queryInfo:{
         type:3,
         pagenum:1,
         pagesize:5
@@ -55,7 +55,7 @@ export default {
   },
   methods:{
     async getCateList(){
-      const {data:res} = await this.$http.get('categories',{param:this.querInfo})
+      const {data:res} = await this.$http.get('categories',{param:this.queryInfo})
       if(res.meta.status !== 200){
         return this.$message.error('获取商品分类失败！')
       }
