@@ -11,7 +11,7 @@
     <!-- 页面主体区域 -->
     <el-container>
       <!-- 侧边栏区域 -->
-      <el-aside :width="isCollapse ? '64px' : '200px' ">
+      <el-aside :width="isCollapse ? '64px' : '200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <el-menu
           background-color="#545c64"
@@ -24,26 +24,33 @@
           :default-active="activePath"
         >
           <!-- 一级菜单 -->
-          <el-submenu :index="item.id +'' " v-for="item in menulist" :key="item.id">
+          <el-submenu
+            :index="item.id + ''"
+            v-for="item in menulist"
+            :key="item.id"
+          >
             <!-- 一级菜单的模板区域 -->
             <template slot="title">
               <!-- 图标 -->
               <i :class="iconsObj[item.id]"></i>
               <!-- 文本 -->
-              <span>{{item.authName}}</span>
+              <span>{{ item.authName }}</span>
             </template>
 
             <!-- 二级菜单 -->
-            <el-menu-item :index=" '/'+subItem.path" v-for="subItem in item.children"
-            :key="subItem.id" @click="saveNavState('/'+subItem.path)">
+            <el-menu-item
+              :index="'/' + subItem.path"
+              v-for="subItem in item.children"
+              :key="subItem.id"
+              @click="saveNavState('/' + subItem.path)"
+            >
               <template slot="title">
                 <!-- 图标 -->
                 <i class="el-icon-menu"></i>
                 <!-- 文本 -->
-                <span>{{subItem.authName}}</span>
+                <span>{{ subItem.authName }}</span>
               </template>
             </el-menu-item>
-        
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -58,25 +65,25 @@
 
 <script>
 export default {
-  data(){
-    return{
-      menulist:[],
-      iconsObj:{
-        '125':'el-icon-s-custom',
-        '103':'el-icon-info',
-        '101':'el-icon-s-goods',
-        '102':'el-icon-coin',
-        '145':'el-icon-s-order'
+  data() {
+    return {
+      menulist: [],
+      iconsObj: {
+        125: "el-icon-s-custom",
+        103: "el-icon-info",
+        101: "el-icon-s-goods",
+        102: "el-icon-coin",
+        145: "el-icon-s-order",
       },
       // 默认不折叠
-      isCollapse:false,
+      isCollapse: false,
       // 被激活的地址
-      activePath:''
+      activePath: "",
     }
   },
-  created(){
+  created() {
     this.getMenuList()
-    this.activePath = window.sessionStorage.getItem('activePath')
+    this.activePath = window.sessionStorage.getItem("activePath")
   },
   methods: {
     logout() {
@@ -84,25 +91,25 @@ export default {
       this.$router.push("/login")
     },
     //获取所有菜单
-    async getMenuList(){
-      const {data:res} = await this.$http.get('menus')
+    async getMenuList() {
+      const { data: res } = await this.$http.get("menus")
       // console.log(res)
-      if(res.meta.status !== 200) return this.$message.error(this.meta.msg)
+      if (res.meta.status !== 200) return this.$message.error(this.meta.msg)
       this.menulist = res.data
     },
     //点击按钮，切换菜单的折叠与展开
-    toggleCollapse(){
+    toggleCollapse() {
       this.isCollapse = !this.isCollapse
     },
-    saveNavState(activePath){
-      window.sessionStorage.setItem('activePath',activePath)
+    saveNavState(activePath) {
+      window.sessionStorage.setItem("activePath", activePath)
       this.activePath = activePath
-    }
+    },
   },
 }
 </script>
 
-<style lang="less" scoped>
+<style>
 .el-container {
   height: 100%;
 }
@@ -112,27 +119,23 @@ export default {
   font-size: 20px;
   display: flex;
   justify-content: space-between;
-  padding-left: 5px;
+  padding-left: 5px !important;
   align-items: center;
-  // img {
-  //   width: 60px;
-  //   height: 60px;
-  // }
-  > div {
-    display: flex;
-    align-items: center;
-    span {
-      margin-left: 12px;
-    }
-  }
+}
+.el-header div {
+  display: flex;
+  align-items: center;
+}
+.el-header div span {
+  margin-left: 12px;
 }
 
 .el-aside {
   background-color: #545c64;
   color: #333;
-  .el-menu{
-    border-right: none;
-  }
+}
+.el-menu {
+  border-right: none;
 }
 
 .el-main {
@@ -140,9 +143,9 @@ export default {
   color: #333;
 }
 
-.toggle-button{
+.toggle-button {
   background: #4a5064;
-  font-size: 10px;;
+  font-size: 10px;
   line-height: 24px;
   color: #fff;
   text-align: center;

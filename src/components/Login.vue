@@ -99,52 +99,50 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style>
 .login_container {
   height: 100%;
   background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
-  .login_box {
-    width: 450px;
-    height: 300px;
-    border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #dcdfe6;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-  }
-
-  .avatar_box {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #eee;
-    border-radius: 50%;
-    padding: 7px;
-    box-shadow: 0 0 10px #ddd;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #eee;
-    }
-  }
-
-  .login_form {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 0 50px;
-    box-sizing: border-box;
-  }
-  .btns {
-    display: flex;
-    justify-content: flex-end;
-  }
+}
+.login_box {
+  width: 450px;
+  height: 300px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #dcdfe6;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+}
+.avatar_box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  padding: 7px;
+  box-shadow: 0 0 10px #ddd;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+.avatar_box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #eee;
+}
+.login_form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+.btns {
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: 414px) and (max-width: 450px) {

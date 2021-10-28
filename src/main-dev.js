@@ -4,6 +4,10 @@ import router from './router'
 import './plugins/element.js'
 import './assets/css/global.css'
 import axios from 'axios'
+
+import MProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 Vue.config.productionTip = false
 Vue.filter('dateFormat',function (originVal){ 
   const dt = new Date(originVal)
@@ -22,7 +26,12 @@ Vue.prototype.$http = axios
 axios.defaults.baseURL = 'https://api.naccl.top/vue/shop/api/private/v1/'
 axios.interceptors.request.use(config => {
   // console.log(config)
+  MProgress.start()
   config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+axios.interceptors.response.use(config => {
+  MProgress.done()
   return config
 })
 new Vue({

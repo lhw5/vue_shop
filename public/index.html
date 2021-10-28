@@ -5,7 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= htmlWebpackPlugin.options.isProd ? '' :'' %>电商后台管理系统</title>
+    <!-- element-ui样式文件 -->
+    <link ref="stylesheet" href="https://cdn.staticfile.org/element-ui/2.8.2/theme-chalk/index.css"/>
+    <!-- vue.js文件 -->
+    <script src="https://cdn.staticfile.org/vue/2.5.22/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- echarts的js文件 -->
+    <script src="https://cdn.staticfile.org/echarts/4.1.0/echarts.min.js"></script>
+    <!-- element-ui的js文件 -->
+    <script src="https://cdn.staticfile.org/element-ui/2.8.2/index.js"></script>
   </head>
   <body>
     <noscript>
